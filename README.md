@@ -9,4 +9,4 @@ If you have any problems with it, just let me know. *It should work in any versi
 * My YouTube video on this plugin: http://youtu.be/LaRu7KYnAVg
 
 # Notice
-If you've seen a plugin called OldCombatMechanics, this is not a rip-off. OldCombatMechanics is much MUCH less efficient, and so it will not run as well on your server. My plugin uses almost no code to run, just around 14 lines. Also, OldCombatMechanics only works on specific versions of 1.9, however mine should work on any 1.9 version, and even when 1.10+ comes out, it should still work.
+I'm actually now working together with the author of OldCombatMechanics to make a more fully featured plugin, and it does what SpamClicker already does. Check it out here: https://www.spigotmc.org/resources/oldcombatmechanics-disable-1-9-hit-cooldown.19510/
