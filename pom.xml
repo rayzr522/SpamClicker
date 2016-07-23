@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.rayzr522.spamcilcker</groupId>
 	<artifactId>SpamClicker</artifactId>
-	<version>1.1</version>
+	<version>1.2</version>
 	<name>SpamClicker</name>
 	<description>Fixes that pesky 1.9 combat update where you can't spam click anymore :(</description>
 	<repositories>
