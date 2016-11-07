@@ -6,3 +6,8 @@
 .metadata
 *.jardesc
 .idea
+.recommenders
+*.iml
+*.eml
+.DS_Store
+META-INF

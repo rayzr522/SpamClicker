@@ -22,122 +22,122 @@ import net.md_5.bungee.api.ChatColor;
 
 public class SpamClicker extends JavaPlugin implements Listener, CommandExecutor {
 
-	private static final String	HORIZONTAL_BAR	= ChatColor.DARK_GRAY + "" + ChatColor.STRIKETHROUGH + Strings.repeat("-", 50);
+    private static final String HORIZONTAL_BAR = ChatColor.DARK_GRAY + "" + ChatColor.STRIKETHROUGH + Strings.repeat("-", 50);
 
-	private boolean				ENABLED			= true;
-	private FileConfiguration	config;
+    private boolean             ENABLED        = true;
+    private FileConfiguration   config;
 
-	public void onEnable() {
+    public void onEnable() {
 
-		getServer().getPluginManager().registerEvents(this, this);
+        getServer().getPluginManager().registerEvents(this, this);
 
-		loadConfig();
-		
-		getCommand("SpamClicker").setExecutor(this);
+        loadConfig();
 
-		getLogger().info("SpamClicker v" + getDescription().getVersion() + " loaded. Click click click click click click :)");
+        getCommand("SpamClicker").setExecutor(this);
 
-	}
+        getLogger().info("SpamClicker v" + getDescription().getVersion() + " loaded. Click click click click click click :)");
 
-	public void loadConfig() {
+    }
 
-		File configFile = getFile("config.yml");
-		if (!configFile.exists()) {
-			saveResource("config.yml", true);
-		}
+    public void loadConfig() {
 
-		reloadConfig();
-		config = getConfig();
+        File configFile = getFile("config.yml");
+        if (!configFile.exists()) {
+            saveResource("config.yml", true);
+        }
 
-		ENABLED = config.getBoolean("enabled");
+        reloadConfig();
+        config = getConfig();
 
-	}
+        ENABLED = config.getBoolean("enabled");
 
-	public void onDisable() {
+    }
 
-		getLogger().info("SpamClicker v" + getDescription().getVersion() + " unloaded. Click, *wait*, click, *wait*, click, *rage*");
+    public void onDisable() {
 
-	}
+        getLogger().info("SpamClicker v" + getDescription().getVersion() + " unloaded. Click, *wait*, click, *wait*, click, *rage*");
 
-	public File getFile(String path) {
+    }
 
-		return new File(getDataFolder() + File.separator + path);
+    public File getFile(String path) {
 
-	}
+        return new File(getDataFolder() + File.separator + path);
 
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onPlayerLogIn(PlayerJoinEvent e) {
+    }
 
-		apply(e.getPlayer());
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onPlayerLogIn(PlayerJoinEvent e) {
 
-	}
+        apply(e.getPlayer());
 
-	public void apply(Player p) {
+    }
 
-		p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(ENABLED ? 1024 : 4);
-		p.saveData();
+    public void apply(Player p) {
 
-	}
+        p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(ENABLED ? 1024 : 4);
+        p.saveData();
 
-	@Override
-	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    }
 
-		if (!command.getLabel().equals("spamclicker")) {
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-		return true;
+        if (!command.getLabel().equals("spamclicker")) {
 
-		}
+            return true;
 
-		if (args.length < 1) {
+        }
 
-			showHelp(sender);
+        if (args.length < 1) {
 
-		} else {
+            showHelp(sender);
 
-			if (args[0].equalsIgnoreCase("reload")) {
+        } else {
 
-				boolean oldEnabled = ENABLED;
+            if (args[0].equalsIgnoreCase("reload")) {
 
-				loadConfig();
+                boolean oldEnabled = ENABLED;
 
-				if (oldEnabled != ENABLED) {
+                loadConfig();
 
-					for (Player p : Bukkit.getServer().getOnlinePlayers()) {
+                if (oldEnabled != ENABLED) {
 
-						apply(p);
+                    for (Player p : Bukkit.getServer().getOnlinePlayers()) {
 
-					}
+                        apply(p);
 
-				}
+                    }
 
-				sender.sendMessage(ChatColor.GREEN + "SpamClicker" + ChatColor.AQUA + " config reloaded");
+                }
 
-			} else if (args[0].equals("version")) {
+                sender.sendMessage(ChatColor.GREEN + "SpamClicker" + ChatColor.AQUA + " config reloaded");
 
-				sender.sendMessage(ChatColor.AQUA + "You're running " + ChatColor.GREEN + "v" + getDescription().getVersion() + ChatColor.AQUA + " of " + ChatColor.GREEN + "SpamClicker");
+            } else if (args[0].equals("version")) {
 
-			} else {
+                sender.sendMessage(ChatColor.AQUA + "You're running " + ChatColor.GREEN + "v" + getDescription().getVersion() + ChatColor.AQUA + " of " + ChatColor.GREEN + "SpamClicker");
 
-				sender.sendMessage(ChatColor.RED + "Unknown command '" + args[0] + "'");
-				showHelp(sender);
+            } else {
 
-			}
+                sender.sendMessage(ChatColor.RED + "Unknown command '" + args[0] + "'");
+                showHelp(sender);
 
-		}
+            }
 
-		return true;
+        }
 
-	}
+        return true;
 
-	public void showHelp(CommandSender sender) {
+    }
 
-		sender.sendMessage(HORIZONTAL_BAR);
+    public void showHelp(CommandSender sender) {
 
-		sender.sendMessage(ChatColor.GREEN + "/SpamClicker reload: " + ChatColor.GRAY + "Reloads the config");
-		sender.sendMessage(ChatColor.GREEN + "/SpamClicker version: " + ChatColor.GRAY + "Shows the version of SpamClicker");
+        sender.sendMessage(HORIZONTAL_BAR);
 
-		sender.sendMessage(HORIZONTAL_BAR);
+        sender.sendMessage(ChatColor.GREEN + "/SpamClicker reload: " + ChatColor.GRAY + "Reloads the config");
+        sender.sendMessage(ChatColor.GREEN + "/SpamClicker version: " + ChatColor.GRAY + "Shows the version of SpamClicker");
 
-	}
+        sender.sendMessage(HORIZONTAL_BAR);
+
+    }
 
 }
